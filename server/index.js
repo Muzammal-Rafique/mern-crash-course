@@ -7,6 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // <--- this is important
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
