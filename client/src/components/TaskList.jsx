@@ -33,14 +33,15 @@ const TaskList = () => {
     }
   };
 
-  const clearCompletedTasks = async () => {
+const clearCompleted = async () => {
   try {
-    await axios.delete('/tasks/clear-completed');
-    fetchTasks(); // Refresh task list
-  } catch (error) {
-    console.error('Error clearing completed tasks', error.message);
+    await axios.delete('/tasks/clear-completed/all', { withCredentials: true });
+    refreshTasks(); // refresh UI
+  } catch (err) {
+    console.error('Failed to clear completed tasks');
   }
 };
+
 
   useEffect(() => {
     fetchTasks();
@@ -50,16 +51,8 @@ const TaskList = () => {
     <div className="space-y-3">
       <div className="flex justify-between items-center mb-4">
   <h2 className="text-xl font-bold">All Tasks</h2>
-  <button
-  onClick={clearCompletedTasks}
-  disabled={!hasCompletedTasks}
-  className={`px-4 py-1 rounded text-sm ${
-    hasCompletedTasks
-      ? 'bg-red-500 text-white hover:bg-red-600'
-      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-  }`}
->
-  Clear Completed
+  <button onClick={clearCompleted} className="bg-red-600 text-white px-4 py-1 rounded mt-4">
+  Clear All Completed
 </button>
 </div>
       {tasks.map((task) => (
