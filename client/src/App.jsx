@@ -1,19 +1,14 @@
-import { useState } from 'react';
-import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
 function App() {
-  const [refresh, setRefresh] = useState(false);
-
-  const refreshTasks = () => {
-    setRefresh((prev) => !prev);
-  };
-
   return (
-    <div className="max-w-xl mx-auto mt-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">📝 Task Manager</h1>
-      <TaskForm refreshTasks={refreshTasks} />
-      <TaskList key={refresh} />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+        <h1 className="text-3xl font-bold text-center mb-6 text-blue-700">📝 Task Manager</h1>
+        <TaskForm />
+        <TaskList />
+      </div>
     </div>
   );
 }
