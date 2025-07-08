@@ -1,16 +1,19 @@
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import AllTasks from './pages/AllTasks';
+import AddTask from './pages/AddTask';
+import CompletedTasks from './pages/CompletedTasks';
 
-function App() {
+const App = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
-        <h1 className="text-3xl font-bold text-center mb-6 text-blue-700">📝 Task Manager</h1>
-        <TaskForm />
-        <TaskList />
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<AllTasks />} />
+        <Route path="add" element={<AddTask />} />
+        <Route path="completed" element={<CompletedTasks />} />
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;
