@@ -11,6 +11,8 @@ const Layout = () => {
           <Link to="/" className={pathname === '/' ? 'underline' : ''}>All</Link>
           <Link to="/add" className={pathname === '/add' ? 'underline' : ''}>Add</Link>
           <Link to="/completed" className={pathname === '/completed' ? 'underline' : ''}>Completed</Link>
+          <Link to="/register" className={pathname === '/register' ? 'underline' : ''}>Sign Up</Link>
+          <Link to="/login" className={pathname === '/login' ? 'underline' : ''}>Sign In</Link>
         </div>
       </nav>
 
