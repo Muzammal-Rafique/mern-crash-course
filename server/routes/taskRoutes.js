@@ -1,13 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
-
-router.post('/', async (req, res) => {
+const authMiddleware = require('../middleware/authMiddleware');
+router.post('/', authMiddleware, async (req, res) => {
+  const { title } = req.body;
   try {
-    const newTask = await Task.create(req.body);
-    res.status(201).json(newTask);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+    const task = await Task.create({
+      title,
+      completed: false,
+      user: req.userId, // Attach the user ID from JWT
+    });
+    res.status(201).json(task);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to create task' });
   }
 });
 
